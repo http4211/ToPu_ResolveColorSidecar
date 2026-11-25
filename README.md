@@ -2,11 +2,12 @@
 
 Blender でレンダリングした EXR などの画像を、DaVinci Resolve（Fusion）で
 **Blender の画面と同じ見た目** にするためのツールセットです。
+このリポジトリで **Blender アドオン** と **DaVinci Resolve プラグイン** の両方を配布しています。
 
 | パッケージ | 対象 | 役割 |
 |---|---|---|
-| **[ToPu_ResolveColorSidecar](ToPu_ResolveColorSidecar/)** | Blender アドオン | レンダリング後、出力フォルダに色の設定（JSON）と LUT（.cube）を書き出す |
-| **[ToPu_BlenderColorLoader](ToPu_BlenderColorLoader/)** | DaVinci Resolve スクリプト | 書き出された設定を読み、Fusion に色変換ノードを自動で組む |
+| **ToPu_ResolveColorSidecar** | Blender アドオン | レンダリング後、出力フォルダに色の設定（JSON）と LUT（.cube）を書き出す |
+| **ToPu_BlenderColorLoader** | DaVinci Resolve スクリプト | 書き出された設定を読み、Fusion に色変換ノードを自動で組む |
 
 - 作者: [http4211](https://github.com/http4211)
 - 対応: Blender 4.2 以降 / DaVinci Resolve 18 以降（無料版・Studio 版）
@@ -171,41 +172,6 @@ RCM / ACES だと Resolve 側の変換が追加でかかり、見た目がずれ
 
 ---
 
-## リポジトリ構成
-
-```
-.
-├─ README.md                         ← このファイル
-├─ build.py                          配布用 zip を dist/ に作るスクリプト
-├─ ToPu_ResolveColorSidecar/         Blender アドオン
-│  ├─ __init__.py
-│  ├─ blender_manifest.toml
-│  └─ README.md
-├─ ToPu_BlenderColorLoader/          DaVinci Resolve スクリプト
-│  ├─ src/
-│  │  ├─ core.lua                    共通処理（両スクリプトの先頭に結合される）
-│  │  ├─ apply.lua                   Apply to Timeline
-│  │  └─ import.lua                  Import Renders
-│  ├─ install.bat / uninstall.bat
-│  └─ README.md
-└─ dist/                             ビルド結果（zip + 配布用 README）
-```
-
-### ビルド
-
-Python 3 で実行します（Blender 同梱の Python でも可）。
-
-```bash
-python build.py
-```
-
-`dist/` に次の 2 つが作られます。
-
-- `ToPu_ResolveColorSidecar-<ver>.zip`（Blender の Install from Disk 用）
-- `ToPu_BlenderColorLoader-<ver>.zip`（Resolve 用。`core.lua` + 各スクリプトを結合した `.lua`、README、インストーラー入り）
-
----
-
 ## 動作確認環境
 
 - Windows 11 / Blender 5.3 / DaVinci Resolve Studio 21.2
@@ -217,5 +183,5 @@ GPL-3.0-or-later
 
 ## Links
 
-- Blender アドオン: https://github.com/http4211/ToPu_ResolveColorSidecar
-- Resolve プラグイン: https://github.com/http4211/ToPu_BlenderColorLoader
+- 配布元（Blender アドオン・Resolve プラグインとも）: https://github.com/http4211/ToPu_ResolveColorSidecar
+- Releases: https://github.com/http4211/ToPu_ResolveColorSidecar/releases
